@@ -15,22 +15,22 @@ require_once "layout/footer.php";
 $sql = "SELECT COUNT(`department_id`) FROM `department`;";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$docreview= $row["COUNT(`department_id`)"];
+$dep_count= $row["COUNT(`department_id`)"];
 
 $sql = "SELECT COUNT(`program_id`) FROM `program`;";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$pdnaprvl= $row["COUNT(`program_id`)"];
+$prgm_count= $row["COUNT(`program_id`)"];
 
 $sql = "SELECT COUNT(`class_id`) FROM `class`;";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$doccount= $row["COUNT(`class_id`)"];
+$class_count= $row["COUNT(`class_id`)"];
 
 $sql = "SELECT COUNT(`user_id`) FROM `student` ;";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$userdoc= $row["COUNT(`user_id`)"];
+$stu_count= $row["COUNT(`user_id`)"];
 
 $sql = "SELECT * FROM user LEFT JOIN `student` ON `user`.`user_id`=`student`.`user_id` LEFT JOIN class ON `class`.`class_id`=`student`.`class_id` WHERE `user`.`user_type`='Student';";
 $result = $conn->query($sql);
@@ -47,7 +47,7 @@ echo <<<EOT
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold text-center text-white">$docreview</div>
+                    <div class="h5 mb-0 font-weight-bold text-center text-white">$dep_count</div>
                     <div class="text-xs font-weight-bold text-center text-uppercase mb-1 text-white">Departments </div>
                 </div>
                 <div class="col-auto">
@@ -63,7 +63,7 @@ echo <<<EOT
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold text-center text-white">$pdnaprvl</div>
+                    <div class="h5 mb-0 font-weight-bold text-center text-white">$prgm_count</div>
                     <div class="text-xs font-weight-bold text-center text-uppercase mb-1 text-white">Programs</div>
                 </div>
                 <div class="col-auto">
@@ -79,7 +79,7 @@ echo <<<EOT
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold text-center text-white">$doccount</div>
+                    <div class="h5 mb-0 font-weight-bold text-center text-white">$class_count</div>
                     <div class="text-xs font-weight-bold text-center text-uppercase mb-1 text-white">Classes </div>
                 </div>
                 <div class="col-auto">
@@ -95,7 +95,7 @@ echo <<<EOT
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold text-center text-white">$userdoc</div>
+                    <div class="h5 mb-0 font-weight-bold text-center text-white">$stu_count</div>
                     <div class="text-xs font-weight-bold text-center text-uppercase mb-1 text-white">students</div>
                 </div>
                 <div class="col-auto">
